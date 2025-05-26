@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Requests</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <style>  
+        body { background-color: #e6f2ff; }  
+        h1, h5, p strong { color: #1e3a8a; }  
+        .card { border: 2px solid #4682b4; }  
+        .card-header { background-color: #4682b4; color: white; }  
+        .btn-primary { background-color: #5dade2; border-color: #5dade2; color: white; }  
+        .btn-primary:hover { background-color: #3498db; border-color: #3498db; }  
+        .btn-success { background-color: #1e90ff; border-color: #1e90ff; }  
+        .btn-danger { background-color: #dc3545; border-color: #dc3545; }  
+    </style>  
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">My Requests</h1>
+        <p class="text-center">Welcome, <strong><%= userName %></strong></p>
+
+        <% if (tissueRequests.length > 0) { %>
+            <% tissueRequests.forEach(request => { %>
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5>Tissue Request: <%= request.tissueType %></h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Full Name:</strong> <%= request.fullName %></p>
+                        <p><strong>Age:</strong> <%= request.age %></p>
+                        <p><strong>Address:</strong> <%= request.address %></p>
+                        <p><strong>Phone:</strong> <%= request.phone %></p>
+                        <p><strong>Email:</strong> <%= request.email %></p>
+                        <p><strong>Blood Type:</strong> <%= request.bloodType %></p>
+                        <p><strong>Tissue Type:</strong> <%= request.tissueType %></p>
+                        <p><strong>Reason:</strong> <%= request.reason %></p>
+                        <p><strong>Condition:</strong> <%= request.condition %></p>
+                        <p><strong>Date Needed:</strong> <%= request.dateNeeded.toLocaleDateString() %></p>
+                        <a href="/uploads/<%= request.doctorRecommendation %>" target="_blank" class="btn btn-primary btn-sm">
+                            View Doctor's Prescription
+                        </a>
+                        <p><strong>Status:</strong>
+                            <% if (request.status === 'Pending') { %>
+                                <span class="badge bg-warning text-dark">Pending</span>
+                            <% } else if (request.status === 'Accepted') { %>
+                                <span class="badge bg-success">Accepted</span>
+                            <% } else if (request.status === 'Rejected') { %>
+                                <span class="badge bg-danger">Rejected</span>
+                            <% } else { %>
+                                <span class="badge bg-secondary">Unknown</span>
+                            <% } %>
+                        </p>
+                        <% if (request.status === 'Accepted' && request.donorId) { %>
+                            <div>
+                                <a href="/donor/<%= request.donorId._id %>/details" class="btn btn-success btn-sm">
+                                    View Donor Details
+                                </a>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+            <% }); %>
+        <% } else { %>
+            <p class="text-center">No tissue requests found for your account.</p>
+        <% } %>
+
+        <div class="text-center mt-3">
+            <a href="/firstPage" class="btn btn-primary">Go to Home</a>
+        </div>
+    </div>
+    
+</body>
+</html>

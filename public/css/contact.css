@@ -1,0 +1,72 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+  
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(0,35,122);
+}
+  
+.contact-page {
+  
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.contact-info {
+    background-color: #ffffff; /* White background for the contact box */
+    padding: 80px; /* Increased padding for more space inside the box */
+    width: 600px; /* Increased width of the box */
+    max-width: 90%; /* Ensure the box is responsive */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Slightly larger shadow for a more prominent look */
+    text-align: center;
+}
+  
+.contact-info h1 {
+    color: rgb(0,35,122);
+    font-weight: bold;
+    margin-bottom: 30px; /* Increased margin for more space */
+    font-size: 32px; /* Larger heading */
+}
+  
+.contact-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+  
+.option {
+    margin-bottom: 25px; /* Increased margin between options */
+    display: flex;
+    align-items: center;
+}
+  
+.option i {
+    font-size: 30px; /* Larger icon size */
+    color:rgb(0,35,122);
+    margin-right: 15px; /* More space between icon and text */
+}
+  
+.option p {
+    font-size: 20px; /* Larger text size */
+    color: #666;
+}
+.home-button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+  }

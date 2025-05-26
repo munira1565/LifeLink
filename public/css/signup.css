@@ -1,0 +1,72 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins',sans-serif;
+}
+body{
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    line-height: 0.60cm;
+    min-height: 100vh;
+    background-color: #009879;
+}
+.container{
+
+    width: 300px;
+    height:380px;
+    align-items: center;
+    border-style: double;
+   background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px 0 rgba(0 0 0 0.3),0 6px 20px 0 rgba(0 0 0 0.3);
+}
+
+.signup{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+   
+
+}
+form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width:40;
+   min-width: 238px ;
+   padding:0 10px;
+
+}
+.tittle{
+    font-size: 35px;
+    color: black;
+}
+
+
+
+
+.btn{
+    width: 120px;
+  position:bottom;  
+height:40px;
+border: none;
+border-radius: 50px;
+background: #009879;
+color:#fff;
+font-weight: 600;
+margin:10px 0;
+text-transform: uppercase;
+
+}
+.btn :hover{
+    background: #c03cc0;
+
+}

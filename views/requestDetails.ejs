@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Requester Details</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <style>
+        body { background-color: #f2faf2; }
+        .container { max-width: 700px; margin: auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); }
+        h2 { color: #228b22; text-align: center; }
+        .details-section { padding: 15px; border-bottom: 1px solid #ddd; }
+        .details-section:last-child { border-bottom: none; }
+        .prescription-img { max-width: 100%; height: auto; border-radius: 5px; margin-top: 10px; }
+        .btn-save { background-color: #5cb85c; color: white; border: none; padding: 10px 15px; margin-top: 20px; display: block; width: 100%; }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Requester Details</h2>
+        <div class="details-section"><strong>Full Name:</strong> <%= request.fullName %></div>
+        <div class="details-section"><strong>Age:</strong> <%= request.age %></div>
+        <div class="details-section"><strong>Address:</strong> <%= request.address %></div>
+        <div class="details-section"><strong>Blood Type:</strong> <%= request.bloodType %></div>
+        <div class="details-section"><strong>Tissue Type:</strong> <%= request.tissueType %></div>
+        <div class="details-section"><strong>Condition:</strong> <%= request.condition %></div>
+        <div class="details-section"><strong>Reason:</strong> <%= request.reason %></div>
+        <% if (request.dateNeeded) { %>
+            <div class="details-section"><strong>Date Needed:</strong> <%= new Date(request.dateNeeded).toDateString() %></div>
+        <% } %>
+        <div class="details-section">
+            <strong>Doctor's Prescription:</strong>
+            <img src="/uploads/<%= request.doctorRecommendation %>" alt="Prescription Image" class="prescription-img">
+        </div>
+        <h4 class="mt-4">Communication Details</h4>
+        <div class="details-section"><strong>Phone:</strong> <%= request.phone %></div>
+        <div class="details-section"><strong>Email:</strong> <%= request.email %></div>
+        
+        
+    </script>
+</body>
+</html>

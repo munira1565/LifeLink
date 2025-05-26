@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tissue Donation Form</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container mt-5">
+    <h2 class="text-center mb-4">Tissue Donation Form</h2>
+    <!-- Add action and method to the form -->
+    <form action="/submit" method="POST">
+      <!-- 1. Personal Details -->
+      <fieldset class="border p-3 mb-4">
+        <legend class="w-auto px-2">1. Personal Details</legend>
+        <div class="form-group">
+          <label for="fullName">Full Name</label>
+          <input type="text" class="form-control" id="fullName" name="fullName" placeholder="Enter your full name" required>
+        </div>
+        <div class="form-group">
+          <label for="age">Age</label>
+          <input type="number" class="form-control" id="age" name="age" placeholder="Enter your age" required>
+        </div>
+        <div class="form-group">
+          <label for="address">Address: City and State</label>
+          <textarea class="form-control" id="address" name="address" rows="3" placeholder="Enter your city and state" required></textarea>
+        </div>
+      </fieldset>
+
+      <!-- 2. Communication Preferences -->
+      <fieldset class="border p-3 mb-4">
+        <legend class="w-auto px-2">2. Communication Preferences</legend>
+        <div class="form-group">
+          <label for="phoneNumber">Phone Number</label>
+          <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="Enter your phone number" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email address" required>
+        </div>
+      </fieldset>
+
+      <!-- 3. Tissue and Health Information -->
+      <fieldset class="border p-3 mb-4">
+        <legend class="w-auto px-2">3. Tissue and Health Information</legend>
+        <div class="form-group">
+          <label for="tissueType">Tissue Type</label>
+          <select class="form-control" id="tissueType" name="tissueType" required>
+            <option value="" disabled selected>Select Tissue Type</option>
+            <option value="Skin">Skin</option>
+            <option value="Blood">Blood</option>
+            <option value="Bone Marrow">Bone Marrow</option>
+            <option value="Kidney">Kidney</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="bloodType">Blood Type</label>
+          <select class="form-control" id="bloodType" name="bloodType" required>
+            <option value="" disabled selected>Select Blood Type</option>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="tissueCondition">Condition of Tissue and Relevant Health History</label>
+          <textarea class="form-control" id="tissueCondition" name="tissueCondition" rows="3" placeholder="Describe the condition of the tissue and any relevant health history" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="availabilityDate">Availability Date</label>
+          <input type="date" class="form-control" id="availabilityDate" name="availabilityDate" required>
+        </div>
+      </fieldset>
+      
+      <!-- 4. Verification -->
+      <fieldset class="border p-3 mb-4">
+        <legend class="w-auto px-2">4. Verification</legend>
+        <div class="form-group">
+          <label for="documentName">Name of Document or any voluntary donation document for Verification</label>
+          <input type="text" class="form-control" id="documentName" name="documentName" placeholder="Enter the name of the document (e.g., Aadhar Card, Passport)" required>
+        </div>
+        <div class="form-group">
+          <label for="donorId">Created ID</label>
+          <input type="text" class="form-control" id="donorId" name="donorId" placeholder="Enter your donor ID" required>
+        </div>
+      </fieldset>
+      
+      <button type="button" class="btn btn-success btn-block" onclick="location.href='/firstPage'">Back</button> 
+
+      <button type="submit" class="btn btn-primary btn-block">Submit</button>
+    </form>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

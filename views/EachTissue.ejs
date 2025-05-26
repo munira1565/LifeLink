@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= tissueType.charAt(0).toUpperCase() + tissueType.slice(1) %> Donations</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            height: 100%;
+            width: 100%;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+            background-color: #e6f2ff;
+        }
+        .content-table {
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: small;
+            min-width: 100%;
+            border-radius: 5px 5px 0 0;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        }
+        .content-table thead tr {
+            background-color: #1e3a8a; /* Dark blue */
+            color: #ffffff;
+            font-size: small;
+            text-align: left;
+            font-weight: bold;
+        }
+        .content-table th,
+        .content-table td {
+            padding: 12px 15px;
+        }
+        .content-table tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+        .content-table tbody tr:nth-of-type(even) {
+            background-color: #d6e4ff; /* Light blue */
+        }
+        .content-table tbody tr:last-of-type {
+            border-bottom: 2px solid #1e3a8a;
+        }
+        .content-table tbody tr.active-row {
+            font-weight: bold;
+            color: #1e3a8a;
+        }
+        nav {
+            text-align: center;
+            padding: 10px;
+            background-color: white;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.15);
+            width: 100%;
+        }
+        nav h3 {
+            margin: 0;
+            display: inline-block;
+            color: #1e3a8a; /* Blue text */
+        }
+    </style>
+    
+</head>
+<body>
+    <nav>
+        <h3><%= tissueType.charAt(0).toUpperCase() + tissueType.slice(1) %> Donations</h3>
+    </nav>
+
+    <div class="container">
+        <% if (donations.length > 0) { %>
+            <table class="content-table">
+                <thead>
+                    <tr>
+                        <th>Full Name</th>
+                        <th>Age</th>
+                        <th>Address</th>
+                        <th>Blood Type</th>
+                        <th>Tissue Condition</th>
+                        <th>Availability Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% donations.forEach(donation => { %>
+                        <tr>
+                            <td><%= donation.fullName %></td>
+                            <td><%= donation.age %></td>
+                            <td><%= donation.address %></td>
+                            <td><%= donation.bloodType %></td>
+                            <td><%= donation.tissueCondition %></td>
+                            <td><%= donation.availabilityDate %></td>
+                            <td>
+                                <form action="/requestForm" method="GET">
+                                    <input type="hidden" name="fullName" value="<%= donation.fullName %>">
+                                    <input type="hidden" name="age" value="<%= donation.age %>">
+                                    <input type="hidden" name="address" value="<%= donation.address %>">
+                                    <input type="hidden" name="bloodType" value="<%= donation.bloodType %>">
+                                    <input type="hidden" name="tissueCondition" value="<%= donation.tissueCondition %>">
+                                    <input type="hidden" name="availabilityDate" value="<%= donation.availabilityDate %>">
+                                    <input type="hidden" name="donorId" value="<%= donation.donorId._id %>">  <!-- Add Donor ID here -->
+                                    <button type="submit" class="btn btn-success">Request Tissue</button>
+                                </form>
+                                
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p class="text-center">No donations available for this tissue type.</p>
+        <% } %>
+    </div>
+</body>
+</html>

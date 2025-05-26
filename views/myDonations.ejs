@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Donations</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <style>  
+        body { background-color: #e6f2ff; }  
+        h1, h5, p strong { color: #1e3a8a; }  
+        .card { border: 2px solid #4682b4; }  
+        .card-header { background-color: #4682b4; color: white; }  
+        .btn-primary { background-color: #5dade2; border-color: #5dade2; color: white; }  
+        .btn-primary:hover { background-color: #3498db; border-color: #3498db; }  
+        .btn-success { background-color: #1e90ff; border-color: #1e90ff; }  
+        .btn-danger { background-color: #dc3545; border-color: #dc3545; }  
+    </style>  
+    
+    <script>
+        function toggleRequests(donationId) {
+            var requestsDiv = document.getElementById("requests-" + donationId);
+            if (requestsDiv.style.display === "none" || requestsDiv.style.display === "") {
+                requestsDiv.style.display = "block";
+            } else {
+                requestsDiv.style.display = "none";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">My Donations</h1>
+        <p class="text-center">Welcome, <strong><%= userName %></strong></p>
+
+        <% if (donations.length > 0) { %>
+            <% donations.forEach(donation => { %>
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5><%= donation.type %> Donation</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Full Name:</strong> <%= donation.fullName %></p>
+                        <p><strong>Age:</strong> <%= donation.age %></p>
+                        <p><strong>Address:</strong> <%= donation.address %></p>
+                        <p><strong>Phone Number:</strong> <%= donation.phoneNumber %></p>
+                        <p><strong>Email:</strong> <%= donation.email %></p>
+                        <p><strong>Tissue Type:</strong> <%= donation.tissueType %></p>
+                        <p><strong>Blood Type:</strong> <%= donation.bloodType %></p>
+                        <p><strong>Tissue Condition:</strong> <%= donation.tissueCondition %></p>
+                        <p><strong>Availability Date:</strong> <%= donation.availabilityDate %></p>
+                        <p><strong>Document Name:</strong> <%= donation.documentName %></p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-info" onclick="toggleRequests('<%= donation._id %>')">Check Requests</button>
+                        <div id="requests-<%= donation._id %>" style="display: none; margin-top: 10px;">
+                            <h6>Requests:</h6>
+
+                            <% if (donation.notifications && donation.notifications.length > 0) { %>
+                                <ul class="list-group">
+                                    <% donation.notifications.forEach(notification => { %>
+                                        <% if (notification.requestId) { %>
+                                            <li class="list-group-item">
+                                                <p><strong>Requester Name:</strong> <%= notification.requestId.fullName %></p>
+                                                <p><strong>Age:</strong> <%= notification.requestId.age %></p>
+                                                <p><strong>Address:</strong> <%= notification.requestId.address %></p>
+                                                <p><strong>Blood Type:</strong> <%= notification.requestId.bloodType %></p>
+                                                <p><strong>Tissue Type:</strong> <%= notification.requestId.tissueType %></p>
+                                                <p><strong>Reason:</strong> <%= notification.requestId.reason %></p>
+                                                <p><strong>Condition:</strong> <%= notification.requestId.condition %></p>
+                                                <% if (notification.requestId.dateNeeded) { %>
+                                                    <p><strong>Requested Date:</strong> <%= new Date(notification.requestId.dateNeeded).toDateString() %></p>
+                                                <% } %>
+                                                <a href="/uploads/<%= notification.requestId.doctorRecommendation %>" target="_blank" class="btn btn-primary btn-sm">View Doctor's Prescription</a>
+                                                <p><strong>Status:</strong> <span id="status-<%= notification.requestId._id %>"><%= notification.responseStatus %></span></p>
+
+                                                <% if (notification.responseStatus === 'Pending') { %>
+                                                    <form method="POST" action="/requests/<%= notification.requestId._id %>/accept" class="d-inline">
+                                                        <button class="btn btn-success btn-sm">Accept</button>
+                                                    </form>
+                                                    <form method="POST" action="/requests/<%= notification.requestId._id %>/reject" class="d-inline">
+                                                        <button class="btn btn-danger btn-sm">Reject</button>
+                                                    </form>
+                                                <% } %>
+                                                <% if (notification.responseStatus === 'Accepted') { %>
+                                                    <a href="/request/<%= notification.requestId._id %>/details" class="btn btn-primary btn-sm">
+                                                        View Details
+                                                    </a>
+                                                <% } %>
+                                            </li>
+                                        <% } %>
+                                    <% }) %>
+                                </ul>
+                            <% } else { %>
+                                <p class="text-muted">No requests available.</p>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <p class="text-center">No donations available.</p>
+        <% } %>
+
+        <div class="text-center mt-3">
+            <a href="/firstPage" class="btn btn-primary">Go to Home</a>
+        </div>
+    </div>
+</body>
+</html>

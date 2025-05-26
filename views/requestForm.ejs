@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tissue Request Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2 class="text-center mb-4">Tissue Request Form</h2>
+        <form action="/submitRequest" method="POST" enctype="multipart/form-data">
+
+            <!-- Hidden field for donorId -->
+    <input type="hidden" name="donorId" value="<%= donorId %>">
+    
+            <!-- Personal Details -->
+            <h4>Personal Details</h4>
+            <div class="mb-3">
+                <label for="fullName" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="fullName" name="fullName" required>
+            </div>
+            <div class="mb-3">
+                <label for="age" class="form-label">Age</label>
+                <input type="number" class="form-control" id="age" name="age" required>
+            </div>
+            <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
+            </div>
+
+            <!-- Communication Preference -->
+            <h4>Communication Preference</h4>
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone</label>
+                <input type="tel" class="form-control" id="phone" name="phone" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+
+            <!-- Medical Information -->
+            <h4>Medical Information</h4>
+            <div class="mb-3">
+                <label for="bloodType" class="form-label">Blood Type</label>
+                <select class="form-select" id="bloodType" name="bloodType" required>
+                    <option value="" disabled selected>Select your blood type</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="tissueType" class="form-label">Tissue Type</label>
+                <select class="form-select" id="tissueType" name="tissueType" required>
+                    <option value="" disabled selected>Select the type of tissue</option>
+                    <option value="Skin">Skin</option>
+                    <option value="Blood">Blood</option>
+                    <option value="Bone Marrow">Bone Marrow</option>
+                    <option value="Kidney">Kidney</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="reason" class="form-label">Reason for Request</label>
+                <textarea class="form-control" id="reason" name="reason" rows="3" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="doctorRecommendation" class="form-label">Doctor’s Recommendation (Upload)</label>
+                <input type="file" class="form-control" id="doctorRecommendation" name="doctorRecommendation" accept=".pdf,.jpg,.png" required>
+            </div>
+
+            <!-- Preferences -->
+            <h4>Preferences</h4>
+            <div class="mb-3">
+                <label for="condition" class="form-label">Condition of Tissue Needed</label>
+                <textarea class="form-control" id="condition" name="condition" rows="3" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="dateNeeded" class="form-label">Date Needed By</label>
+                <input type="date" class="form-control" id="dateNeeded" name="dateNeeded" required>
+            </div>
+
+            <!-- ID Entry -->
+            <div class="mb-3">
+                <label for="id" class="form-label">ID</label>
+                <input type="text" class="form-control" id="requestId" name="requestId" required>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary w-100">Submit Request</button>
+        </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+
+    
+</body>
+</html>
