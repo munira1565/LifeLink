@@ -16,10 +16,11 @@ app.set("views", "./views");
 app.use(express.urlencoded({ extended: true }));// Middleware to parse form data
 app.use(bodyParser.json());
 // Connect to MongoDB
-mongoose.connect("mongodb://localhost:27017/myDonation", {//url of database
+mongoose.connect("mongodb+srv://munira:munira15@cluster0.7dpmmmz.mongodb.net/tissueDonation?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
+
 .then(() => console.log('MongoDB connected successfully!'))
 .catch((err) => console.error('MongoDB connection error:', err));
 
