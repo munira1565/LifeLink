@@ -16,8 +16,11 @@ app.set("views", "./views");
 app.use(express.urlencoded({ extended: true }));// Middleware to parse form data
 app.use(bodyParser.json());
 // Connect to MongoDB
+require('dotenv').config();
+const uri = process.env.MONGODB_URI;
 
-mongoose.connect("mongodb+srv://munira:munira15@cluster0.7dpmmmz.mongodb.net/tissueDonation?retryWrites=true&w=majority&appName=Cluster0", {
+
+mongoose.connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
