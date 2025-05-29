@@ -75,6 +75,9 @@ app.get('/about', (req, res) => {
 app.get('/contact', (req, res) => {
     res.render('contact'); 
 });
+app.get('/donateForm', (req, res) => {
+   res.render('donateForm');
+});
 
 
 app.post("/signup", async (req, res) => {
