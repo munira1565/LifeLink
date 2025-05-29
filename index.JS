@@ -75,6 +75,7 @@ app.get('/about', (req, res) => {
 app.get('/contact', (req, res) => {
     res.render('contact'); 
 });
+// donateform
 app.get('/donateForm', (req, res) => {
    res.render('donateForm');
 });
